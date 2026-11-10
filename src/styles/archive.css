@@ -1,0 +1,154 @@
+/* =========================================================
+   O CORTE DO TEMPO — Living Archive (sem 3D)
+   ========================================================= */
+.archive { position: relative; background: var(--bg-2); }
+.archive__title { font-size: clamp(2.6rem, 1.6rem + 3.4vw, 5.2rem); line-height: 0.98; letter-spacing: -0.02em; margin: 18px 0 16px; }
+.archive__title em { color: var(--gold); }
+.kline { display: inline-block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; vertical-align: top; }
+.kline > span { display: inline-block; }
+.archive__sub { font-size: clamp(1.4rem, 1.1rem + 1vw, 2.1rem); line-height: 1.15; font-style: italic; color: var(--text); margin-bottom: 14px; }
+.archive__label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.archive__year { font-size: clamp(4rem, 2.2rem + 5vw, 8rem); line-height: 0.86; margin: 12px 0 16px; letter-spacing: -0.03em; color: transparent; -webkit-text-stroke: 1px var(--gold); }
+.archive__chapter .h3, .archive__item .h3 { font-size: clamp(1.7rem, 1.2rem + 1.4vw, 2.6rem); margin-bottom: 12px; }
+.archive__text { color: var(--text-muted); max-width: 44ch; }
+.archive__tag {
+  position: absolute; right: 12px; bottom: 12px; z-index: 6;
+  padding: 5px 9px; border-radius: 2px;
+  background: rgb(11 10 9 / 0.62);
+  color: #f7f3ed; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+
+/* Kinetic year: dígitos sobem um a um */
+.kyear { display: inline-flex; overflow: hidden; padding-bottom: 0.06em; }
+.kyear__d { display: inline-block; transform: translateY(105%); transition: transform 0.9s var(--ease-out); }
+.kyear.is-on .kyear__d { transform: none; }
+
+/* Desktop fixado */
+.archive--scrub { height: 440vh; }
+.archive__stage { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; display: grid; grid-template-rows: 1fr auto; padding-top: 96px; }
+.archive__layout { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 96px); align-items: center; min-height: 0; }
+.archive__layout > * { min-width: 0; }
+.archive__copy { position: relative; min-height: 440px; }
+.archive__intro { position: absolute; inset: 0 auto auto 0; max-width: 34ch; transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.archive__intro.is-out { opacity: 0; transform: translateY(-30px); pointer-events: none; }
+.archive__chapters { list-style: none; margin: 0; padding: 0; position: relative; }
+.archive__chapter {
+  position: absolute; inset: 0 0 auto 0;
+  opacity: 0;
+  transform: translateY(36px);
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 0.6s var(--ease-out), transform 0.9s var(--ease-out), clip-path 0.9s var(--ease-out);
+  pointer-events: none;
+}
+.archive__chapter.is-active { opacity: 1; transform: none; clip-path: inset(0 0 0 0); pointer-events: auto; transition-delay: 0.15s; }
+.archive__source { margin-top: 14px; max-width: 46ch; }
+
+.archive__visual { position: relative; height: 100%; display: grid; align-items: center; }
+.archive__photos {
+  position: relative;
+  aspect-ratio: 4 / 4.2;
+  max-height: calc(100dvh - 230px);
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: #15110f;
+}
+.archive__photos::after {
+  content: ''; position: absolute; inset: 10px; z-index: 5; pointer-events: none;
+  border: 1px solid rgb(226 196 143 / 0.35);
+}
+.archive__photo {
+  position: absolute; inset: 0; margin: 0;
+  /* Máscara diagonal: entra como um corte em ângulo */
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  transition: clip-path 1.2s var(--ease-in-out);
+  z-index: 1;
+}
+.archive__photo.is-past { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); z-index: 0; }
+.archive__photo.is-active { clip-path: polygon(-30% 0, 100% 0, 100% 100%, 0% 100%); z-index: 2; }
+.archive__photo picture, .archive__photo img { width: 100%; height: 100%; }
+.archive__photo img { object-fit: cover; transform: scale(1.12); transition: transform 2.6s var(--ease-out); }
+.archive__photo.is-active img { transform: scale(1.02); }
+.archive__cover {
+  position: absolute; inset: 0; z-index: 3;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 40%, #221d1a, #0b0a09);
+  opacity: 0; transition: opacity 0.8s var(--ease-out);
+}
+.archive__cover.is-on { opacity: 1; }
+.archive__cover .serif { font-size: clamp(2rem, 1.2rem + 2.4vw, 3.6rem); color: #e2c48f; font-style: italic; }
+.archive__cut {
+  position: absolute; top: -20%; bottom: -20%; left: 0; z-index: 4;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, #e2c48f 25%, #fff8ea 50%, #e2c48f 75%, transparent);
+  box-shadow: 0 0 16px rgb(226 196 143 / 0.55);
+  transform: rotate(16deg);
+  animation: archive-cut 1.2s var(--ease-in-out) forwards;
+  pointer-events: none;
+}
+@keyframes archive-cut { 0% { left: 105%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: -5%; opacity: 0; } }
+
+.archive__rail { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-top: 16px; padding-bottom: 28px; }
+.archive__rail-track { position: absolute; left: max(var(--gutter), env(safe-area-inset-left)); right: max(var(--gutter), env(safe-area-inset-right)); top: 0; height: 1px; background: var(--line-strong); }
+.archive__rail-track > span { display: block; height: 100%; background: var(--gold); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.archive__tick { display: grid; gap: 4px; justify-items: start; min-height: 44px; padding: 8px 0 0; border: 0; background: none; color: var(--text-faint); text-align: left; }
+.archive__tick-year { font-size: 1.4rem; line-height: 1; color: inherit; }
+.archive__tick-name { font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.archive__tick.is-past { color: var(--text-muted); }
+.archive__tick.is-on { color: var(--text); }
+.archive__tick.is-on .archive__tick-year { color: var(--gold); }
+
+/* Mobile / reduced motion: narrativa vertical */
+.archive--stack .archive__intro { max-width: 40ch; margin-bottom: clamp(40px, 6vw, 72px); }
+.archive__list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(56px, 8vw, 96px); }
+.archive__item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.archive__item:nth-child(even) .archive__media { order: 2; }
+.archive__media { position: relative; aspect-ratio: 4 / 3.6; overflow: hidden; border: 1px solid var(--line-strong); border-radius: 2px; background: #15110f; }
+.archive__media picture, .archive__media img { width: 100%; height: 100%; object-fit: cover; }
+.archive--stack .archive__year { font-size: clamp(3.4rem, 14vw, 6rem); }
+@media (max-width: 767px) {
+  .archive__item { grid-template-columns: 1fr; }
+  .archive__item:nth-child(even) .archive__media { order: 0; }
+  .archive__media { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* Quadros reservados (até a chegada das fotografias definitivas) */
+.archive__placeholder {
+  position: absolute; inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 26px, var(--gold-soft) 26px 27px),
+    radial-gradient(120% 90% at 50% 40%, var(--surface-2), var(--surface));
+}
+.archive__media .archive__placeholder { position: absolute; }
+.archive__ph-year {
+  font-size: clamp(3.4rem, 2rem + 4vw, 7rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--gold) 55%, transparent);
+  letter-spacing: -0.02em;
+}
+.archive__ph-note {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--bg);
+}
+.archive__photos, .archive__media { background: var(--surface); }
+[data-theme='light'] .archive__photos::after { border-color: rgb(135 92 37 / 0.35); }
+.archive__media::after { content: ''; position: absolute; inset: 10px; border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); pointer-events: none; }
+.archive__photo .archive__placeholder { transform: none; }
+
+/* Revelação editorial do quadro ativo: o ano em contorno sobe depois do corte diagonal, a nota fecha a cena. */
+.archive__photo .archive__ph-year { opacity: 0; transform: translateY(22px); transition: opacity 0.9s var(--ease-out) 0.35s, transform 1.2s var(--ease-out) 0.35s; }
+.archive__photo .archive__ph-note { opacity: 0; transform: translateY(8px); transition: opacity 0.7s var(--ease-out) 0.65s, transform 0.7s var(--ease-out) 0.65s; }
+.archive__photo.is-active .archive__ph-year,
+.archive__photo.is-active .archive__ph-note { opacity: 1; transform: none; }

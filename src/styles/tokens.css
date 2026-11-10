@@ -1,0 +1,94 @@
+/* RB Carnes — tokens. Black Gold (escuro) e Ivory Gold (claro). */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0a09;
+  --bg-2: #120f0d;
+  --surface: #191513;
+  --surface-2: #221d1a;
+  --text: #f7f3ed;
+  --text-muted: #b9b0a5;
+  --text-faint: #8d847a;
+  --gold: #cba46a;
+  --gold-soft: rgb(203 164 106 / 0.16);
+  --red: #d9545c;
+  --on-red: #0b0a09;
+  --line: rgb(247 243 237 / 0.12);
+  --line-strong: rgb(247 243 237 / 0.24);
+  --control-border: #756b61;
+  --overlay: rgb(11 10 9 / 0.72);
+  --nav-bg: rgb(17 14 12 / 0.72);
+  --shadow: 0 30px 80px -30px rgb(0 0 0 / 0.8);
+  --photo-veil: linear-gradient(180deg, rgb(11 10 9 / 0) 40%, rgb(11 10 9 / 0.85) 100%);
+  --scene-bg: #0b0a09;
+  --focus: #f0c987;
+  --or7-plate: #000;
+  --scroll-thumb: #4a423b;
+  --scroll-thumb-hover: #cba46a;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f8f5ef;
+  --bg-2: #f1ece3;
+  --surface: #ffffff;
+  --surface-2: #f3eee6;
+  --text: #211b18;
+  --text-muted: #5b514a;
+  --text-faint: #6b6057;
+  --gold: #875c25;
+  --gold-soft: rgb(135 92 37 / 0.1);
+  --red: #a52b35;
+  --on-red: #ffffff;
+  --line: rgb(33 27 24 / 0.12);
+  --line-strong: rgb(33 27 24 / 0.24);
+  --control-border: #8a7e74;
+  --overlay: rgb(33 27 24 / 0.5);
+  --nav-bg: rgb(250 248 243 / 0.78);
+  --shadow: 0 30px 70px -34px rgb(60 40 20 / 0.35);
+  --photo-veil: linear-gradient(180deg, rgb(20 16 14 / 0) 40%, rgb(20 16 14 / 0.82) 100%);
+  --scene-bg: #efe9df;
+  --focus: #7a4f16;
+  --or7-plate: #000;
+  --scroll-thumb: #c9bdb0;
+  --scroll-thumb-hover: #875c25;
+}
+
+:root {
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.9rem, 1.6rem + 6.4vw, 9rem);
+  --fs-h1: clamp(2.6rem, 1.5rem + 5vw, 7rem);
+  --fs-h2: clamp(2.25rem, 1.45rem + 3.4vw, 5.25rem);
+  --fs-h3: clamp(1.6rem, 1.25rem + 1.3vw, 2.5rem);
+  --fs-h4: clamp(1.25rem, 1.1rem + 0.5vw, 1.6rem);
+  --fs-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.3rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 144px;
+  --section-y: clamp(96px, 7vw + 48px, 176px);
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1360px;
+  --measure: 62ch;
+
+  --r-sm: 2px;
+  --r-md: 2px;
+  --r-lg: 4px;
+  --r-pill: 2px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --nav-h: 72px;
+}

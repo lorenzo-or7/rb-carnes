@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <title>RB Carnes — Soluções em carnes para food service</title>
+    <meta name="description" content="RB Carnes: fornecimento de carnes e cortes padronizados para restaurantes, hamburguerias, lanchonetes, marmitarias e delivery. São José, Santa Catarina." />
+    <meta name="theme-color" content="#0B0A09" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8F5EF" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="RB Carnes — Servir bem para servir sempre" />
+    <meta property="og:description" content="Produto, serviço e praticidade para operações de food service." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script>
+      // Hidratação do tema antes da primeira pintura (sem flash).
+      (function () {
+        try {
+          var saved = localStorage.getItem('rb-theme');
+          var theme = saved === 'light' || saved === 'dark'
+            ? saved
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.dataset.theme = theme;
+          // Pré-carrega só a arte do hero do tema inicial (LCP); a outra carrega com prioridade baixa.
+          var base = '/assets/hero/hero-' + theme;
+          var max = theme === 'dark' ? 1672 : 1671;
+          var l = document.createElement('link');
+          l.rel = 'preload'; l.as = 'image'; l.type = 'image/avif';
+          l.setAttribute('imagesrcset', base + '-800.avif 800w, ' + base + '-1280.avif 1280w, ' + base + '-' + max + '.avif ' + max + 'w');
+          l.setAttribute('imagesizes', '(max-width: 1023px) 100vw, 56vw');
+          l.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(l);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript><p style="padding:24px;font-family:sans-serif">A RB Carnes precisa de JavaScript para exibir esta demonstração.</p></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

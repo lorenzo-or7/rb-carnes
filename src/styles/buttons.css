@@ -1,0 +1,176 @@
+/* =========================================================
+   Sistema editorial de ações — RB Carnes
+   Hierarquia: primário · secundário · acento · link editorial · ação discreta
+   Geometria retangular com canto de 2px, rótulos em versalete espaçado,
+   preenchimento que corre da esquerda no hover e seta que avança.
+   ========================================================= */
+:root,
+[data-theme='dark'] {
+  --btn-primary-bg: #cba46a;
+  --btn-primary-fg: #0b0a09;
+  --btn-primary-fill: #f7f3ed;
+  --btn-primary-fill-fg: #0b0a09;
+}
+[data-theme='light'] {
+  --btn-primary-bg: #211b18;
+  --btn-primary-fg: #f8f5ef;
+  --btn-primary-fill: #875c25;
+  --btn-primary-fill-fg: #ffffff;
+}
+
+.btn {
+  --btn-h: 54px;
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-border: var(--line-strong);
+  --btn-fill: var(--text);
+  --btn-fill-fg: var(--bg);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: var(--btn-h);
+  padding: 0 26px;
+  border: 1px solid var(--btn-border);
+  border-radius: 2px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.45s var(--ease-out), border-color 0.45s var(--ease-out), background-color 0.3s;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: var(--btn-fill);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-out);
+}
+.btn svg { width: 16px; height: 16px; flex: none; transition: transform 0.45s var(--ease-out); }
+@media (hover: hover) {
+  .btn:hover { color: var(--btn-fill-fg); border-color: var(--btn-fill); }
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn:hover svg:last-child { transform: translateX(4px); }
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.btn--sm { --btn-h: 44px; padding: 0 18px; gap: 10px; font-size: 0.72rem; letter-spacing: 0.14em; }
+
+/* Primário: dourado sobre Black Gold, grafite sobre Ivory Gold */
+.btn--primary {
+  --btn-bg: var(--btn-primary-bg);
+  --btn-fg: var(--btn-primary-fg);
+  --btn-border: var(--btn-primary-bg);
+  --btn-fill: var(--btn-primary-fill);
+  --btn-fill-fg: var(--btn-primary-fill-fg);
+}
+/* Secundário: contorno fino */
+.btn--ghost { --btn-border: var(--control-border); }
+/* Acento: contorno dourado (ações de confirmação, ex.: copiar) */
+.btn--gold {
+  --btn-border: var(--gold);
+  --btn-fg: var(--gold);
+  --btn-fill: var(--gold);
+  --btn-fill-fg: var(--bg);
+}
+
+/* Link editorial: texto + régua que se recolhe */
+.btn--link {
+  --btn-h: 44px;
+  padding: 0;
+  border: 0;
+  gap: 10px;
+  background: none;
+  color: var(--text);
+  font-size: 0.78rem;
+  overflow: visible;
+}
+.btn--link::before { display: none; }
+.btn--link span { background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 3px; transition: background-size 0.45s var(--ease-out); }
+@media (hover: hover) {
+  .btn--link:hover { color: var(--gold); }
+  .btn--link:hover span { background-size: 0% 1px; background-position: 100% 100%; }
+}
+
+/* Estados */
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  --btn-bg: transparent;
+  --btn-fg: var(--text-faint);
+  --btn-border: var(--line);
+  cursor: not-allowed;
+  border-style: dashed;
+}
+.btn[disabled]::before,
+.btn[aria-disabled='true']::before { display: none; }
+.btn[disabled]:hover,
+.btn[aria-disabled='true']:hover { color: var(--text-faint); border-color: var(--line); }
+.btn.is-pending { opacity: 0.6; }
+.btn[aria-pressed='true'].btn--ghost {
+  --btn-border: var(--gold);
+  --btn-fg: var(--gold);
+}
+
+/* Botão de destaque do contato (antes "interactive hover button") */
+.btn-ihb { --btn-h: 64px; padding: 0 32px; font-size: 0.82rem; }
+
+/* Ação discreta de interface (ícone + rótulo) */
+.ui-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.ui-action svg { width: 15px; height: 15px; }
+.ui-action:hover { color: var(--text); border-color: var(--line-strong); }
+
+/* Controle segmentado editorial (Peça / Textura, formatos, etc.) */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 3px;
+  gap: 3px;
+}
+.segmented button {
+  min-height: 38px;
+  min-width: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 1px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
+}
+.segmented button:hover { color: var(--text); }
+.segmented button[aria-pressed='true'],
+.segmented button[aria-selected='true'] { background: var(--text); color: var(--bg); }
+
+/* Telas estreitas: rótulos longos quebram linha em vez de estourar a largura */
+@media (max-width: 479px) {
+  .btn { white-space: normal; text-align: center; line-height: 1.35; padding-block: 12px; }
+  .btn--link { text-align: left; padding-block: 0; }
+}

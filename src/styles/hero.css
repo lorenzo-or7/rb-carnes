@@ -1,0 +1,249 @@
+/* =========================================================
+   HERO — Editorial Split Premium
+   Texto ~44% · painel ~56% sangrando à direita. A arte oficial (1672×941) fica inteira,
+   ancorada na base do painel; o espaço acima é a continuação do próprio "céu" da arte
+   (hero-*-extend.webp), com a borda superior da foto dissolvida nele. Sem faixas, sem recorte.
+   ========================================================= */
+.hero {
+  --hero-art-h: calc(56vw * 941 / 1672);
+  --hero-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  align-items: stretch;
+  /* Altura acompanha a arte (+ respiro), limitada pela viewport: o painel nunca fica com sobra excessiva. */
+  min-height: clamp(560px, min(calc(100svh - 84px), calc(var(--hero-art-h) + 17rem)), 920px);
+  margin-top: calc(84px + env(safe-area-inset-top));
+  background: var(--bg);
+}
+.hero__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3vw, 52px) clamp(28px, 3.2vw, 64px) clamp(24px, 2.6vw, 40px) max(var(--gutter), calc((100vw - var(--max)) / 2));
+  min-width: 0;
+}
+.hero__body {
+  display: flex;
+  flex-direction: column;
+  margin-block: auto;
+  padding-block: clamp(12px, 2vw, 28px);
+}
+.hero__eyebrow { display: flex; align-items: center; gap: 14px; }
+.hero__eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex: none; }
+.hero__h1 {
+  margin-top: clamp(16px, 1.6vw, 24px);
+  font-size: clamp(2.75rem, 1.15rem + 3.7vw, 5.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.024em;
+  max-width: 10.5ch;
+  text-wrap: balance;
+}
+.hero__h1 em { color: var(--gold); }
+.hero__line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.hero__line > span { display: inline-block; will-change: transform; }
+.hero__lead {
+  margin-top: clamp(18px, 1.8vw, 28px);
+  max-width: 40ch;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+}
+.hero__ctas .btn--primary { padding-inline: 24px; }
+.hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: clamp(24px, 2.4vw, 36px); }
+.hero__meta {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, auto) 1fr;
+  align-items: end;
+  gap: 20px clamp(24px, 3vw, 48px);
+  padding-top: 18px;
+}
+.hero__rule { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); transform-origin: left; }
+.hero__rule::before { content: ''; position: absolute; left: 0; top: 0; width: 56px; height: 1px; background: var(--gold); }
+.hero__meta-item { display: grid; gap: 4px; }
+.hero__meta-item strong { font-family: var(--font-serif); font-weight: 400; font-size: 1.3rem; line-height: 1; color: var(--text); }
+.hero__meta-item span { font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+.hero__scroll {
+  justify-self: end;
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  transition: color 0.4s var(--ease-out);
+}
+.hero__scroll svg { width: 14px; height: 14px; color: var(--gold); animation: bob 2.4s var(--ease-in-out) infinite; }
+.hero__scroll:hover { color: var(--text); }
+.hero__scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 2px; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+
+/* Painel visual */
+.hero__visual {
+  --reveal: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: #170100;
+  transition: background-color 0.85s var(--hero-ease);
+}
+[data-theme='light'] .hero__visual { background-color: #f6dcc2; }
+/* Céu contínuo: colunas de cor da borda superior da arte, esticadas para cima. */
+.hero__sky {
+  position: absolute; inset: 0;
+  background: center bottom / 100% 100% no-repeat;
+  transition: opacity 0.85s var(--hero-ease);
+}
+.hero__sky--dark { background-image: url('/assets/hero/hero-dark-extend.webp'); }
+.hero__sky--light { background-image: url('/assets/hero/hero-light-extend.webp'); opacity: 0; }
+[data-theme='light'] .hero__sky--dark { opacity: 0; }
+[data-theme='light'] .hero__sky--light { opacity: 1; }
+/* Costura com a coluna de texto: transição suave (antes do início da logo, a 7,5% da arte). */
+.hero__visual::before {
+  content: '';
+  position: absolute; z-index: 2; inset: 0 auto 0 0;
+  width: 4.5%;
+  background: linear-gradient(90deg, var(--seam, #0b0a09), transparent);
+  pointer-events: none;
+}
+[data-theme='light'] .hero__visual { --seam: #f8f5ef; }
+.hero__stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  flex: none;
+  /* A borda superior da foto se dissolve no céu derivado dela. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%);
+}
+.hero__arts { position: absolute; inset: 0; transform-origin: 46% 70%; }
+.hero__art { position: absolute; inset: 0; transition: opacity 0.85s var(--hero-ease); }
+/* Mesma proporção do arquivo: nenhum recorte da logo ou da carne. */
+.hero__art img { width: 100%; height: 100%; object-fit: contain; }
+.hero__art--light { opacity: 0; }
+[data-theme='light'] .hero__art--light { opacity: 1; }
+[data-theme='light'] .hero__art--dark { opacity: 0; }
+/* Detalhe editorial: índice dourado no respiro superior do painel. */
+.hero__caption {
+  position: absolute; z-index: 2;
+  top: clamp(22px, 2.4vw, 40px); right: max(var(--gutter), calc((100vw - var(--max)) / 2));
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.64rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: #e3c798;
+  transition: color 0.85s var(--hero-ease);
+}
+.hero__caption::before { content: ''; width: 36px; height: 1px; background: currentColor; opacity: 0.7; }
+[data-theme='light'] .hero__caption { color: #7a5220; }
+@media (prefers-reduced-motion: reduce) { .hero__art, .hero__sky { transition-duration: 0.01ms; } }
+
+/* Tablet e mobile: composição própria — arte inteira no topo, texto abaixo. */
+@media (max-width: 1023px) {
+  .hero { grid-template-columns: 1fr; margin-top: calc(72px + env(safe-area-inset-top)); min-height: 0; }
+  .hero__visual { order: -1; }
+  .hero__visual::before, .hero__sky, .hero__caption { display: none; }
+  .hero__stage { -webkit-mask-image: none; mask-image: none; }
+  .hero__text { padding: 32px var(--gutter) 36px; }
+  .hero__body { margin-block: 0 36px; padding-block: 0; }
+  .hero__h1 { max-width: 12ch; font-size: clamp(2.6rem, 9.4vw, 4.2rem); }
+}
+@media (max-width: 559px) {
+  .hero__ctas { gap: 12px 24px; }
+  .hero__ctas .btn--primary { flex: 1 1 100%; }
+  .hero__meta { grid-template-columns: repeat(2, auto) 1fr; }
+  .hero__scroll span { display: none; }
+}
+@media (max-width: 359px) {
+  .hero__meta { grid-template-columns: 1fr 1fr; }
+  .hero__scroll { display: none; }
+}
+
+/* Entrada: o painel surge por uma máscara de borda suave, de baixo para cima (só durante a intro). */
+.hero--intro .hero__visual {
+  -webkit-mask-image: linear-gradient(to top, #000 calc(var(--reveal) - 28%), transparent var(--reveal));
+  mask-image: linear-gradient(to top, #000 calc(var(--reveal) - 28%), transparent var(--reveal));
+}
+
+/* =========================================================
+   MANIFESTO — declaração equilibrada + slideshow editorial
+   ========================================================= */
+.manifesto { position: relative; z-index: 3; background: var(--bg); }
+.marquee { border-bottom: 1px solid var(--line); overflow: hidden; padding-block: 20px; background: var(--bg-2); }
+.marquee__track { display: flex; width: max-content; animation: marquee 52s linear infinite; }
+.marquee ul { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
+.marquee li { display: flex; align-items: center; gap: 32px; padding-right: 32px; white-space: nowrap; }
+.marquee li .serif { font-size: clamp(1.3rem, 1rem + 1.1vw, 2rem); line-height: 1; font-style: italic; }
+.marquee__dot { width: 6px; height: 6px; background: var(--gold); flex: none; transform: rotate(45deg); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+
+.manifesto__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(40px, 6vw, 112px);
+  align-items: center;
+  padding-block: var(--section-y);
+}
+.manifesto__grid > * { min-width: 0; }
+.manifesto__statement {
+  margin-top: 22px;
+  max-width: 19ch;
+  font-size: clamp(2rem, 1.25rem + 2.3vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+.mline {
+  --lit: 1;
+  color: color-mix(in srgb, var(--text) calc(var(--lit) * 100%), var(--text-faint));
+}
+.mline em { color: color-mix(in srgb, var(--gold) calc(var(--lit) * 100%), var(--text-faint)); }
+.manifesto__points { list-style: none; margin: 40px 0 0; padding: 0; display: grid; max-width: 52ch; border-top: 1px solid var(--line); }
+.manifesto__points li { display: grid; grid-template-columns: 40px 1fr; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--text-muted); }
+.manifesto__idx { font-size: 0.7rem; letter-spacing: 0.16em; color: var(--gold); font-weight: 600; padding-top: 4px; }
+.manifesto__slogan { margin-top: 32px; font-size: clamp(1.4rem, 1.1rem + 0.9vw, 2rem); color: var(--gold); }
+
+/* Slideshow */
+.slides { position: relative; }
+.slides__frame {
+  position: relative;
+  aspect-ratio: 1106 / 1422;
+  max-height: min(78vh, 720px);
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgb(203 164 106 / 0.35);
+  border-radius: 2px;
+  background: #0b0a09;
+  outline: 1px solid rgb(203 164 106 / 0.18);
+  outline-offset: 8px;
+}
+/* Ivory Gold: as artes escuras ganham passe-partout grafite com filete dourado. */
+[data-theme='light'] .slides__frame { border: 10px solid #191513; outline-color: rgb(135 92 37 / 0.45); box-shadow: 0 30px 60px -36px rgb(33 27 24 / 0.55); }
+.slides__slide {
+  position: absolute; inset: 0; margin: 0;
+  z-index: 1;
+  opacity: 0;
+  /* A ilustração anterior só some depois que a nova cobriu o quadro: sem "mergulho" no preto e sem deformação. */
+  transition: opacity 0.01s linear 1.2s;
+}
+.slides__slide.is-active { z-index: 2; opacity: 1; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.slides__slide picture, .slides__slide img { width: 100%; height: 100%; }
+.slides__slide img { object-fit: contain; }
+.slides__controls { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px 20px; margin-top: 22px; }
+.slides__progress { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.slides__bar { height: 2px; background: var(--line-strong); overflow: hidden; }
+.slides__bar > span { display: block; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+.slides__bar.is-done > span { transform: scaleX(1); }
+.slides__bar.is-active > span { transform: scaleX(1); }
+.slides.is-running .slides__bar.is-active > span { animation: slide-progress linear forwards; animation-duration: inherit; transform: scaleX(0); }
+@keyframes slide-progress { to { transform: scaleX(1); } }
+.slides__count { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+.slides__count span { color: var(--text); font-weight: 700; }
+.slides__buttons { display: flex; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { .slides__slide, .slides__slide.is-active { transition: opacity 0.01s; } }
+@media (max-width: 1023px) {
+  .manifesto__grid { grid-template-columns: 1fr; }
+  .slides { max-width: 520px; width: 100%; margin-inline: auto; }
+}

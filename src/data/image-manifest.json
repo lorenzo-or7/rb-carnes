@@ -1,0 +1,240 @@
+{
+  "acem-lombo": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "alcatra-completa": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "alcatra-miolo": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "capa-contra-file": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "capa-coxao-mole": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "contra-file-cbc": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "contra-file": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "costela": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "coxao-duro": {
+    "studio": {
+      "w": 1536,
+      "h": 1024
+    },
+    "macro": {
+      "w": 1536,
+      "h": 1024
+    }
+  },
+  "coxao-mole": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "cupim": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "entrecote": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "fraldinha-miolo": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "fraldinha": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "paleta-suina": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "sobrepaleta-suina": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "bifes-padronizados": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "cubos": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "tiras-iscas": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "carne-moida": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "cortes-personalizados": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    },
+    "macro": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "molhos-ekma": {
+    "studio": {
+      "w": 1122,
+      "h": 1402
+    }
+  },
+  "__scenes": {
+    "ato1-preparo": {
+      "w": 1448,
+      "h": 1086
+    },
+    "seg-restaurantes": {
+      "w": 1536,
+      "h": 1024
+    },
+    "seg-hamburguerias": {
+      "w": 1122,
+      "h": 1402
+    },
+    "seg-marmitarias": {
+      "w": 1122,
+      "h": 1402
+    },
+    "seg-delivery": {
+      "w": 1536,
+      "h": 1024
+    }
+  }
+}
