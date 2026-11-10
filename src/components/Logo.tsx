@@ -5,9 +5,9 @@ type Variant = 'on-dark' | 'on-light';
 function LogoPicture({ v, size, alt, className }: { v: Variant; size: number; alt: string; className?: string }) {
   return (
     <picture className={className}>
-      <source type="image/webp" srcSet={`/assets/brand/rb-logo-${v}-480.webp 480w, /assets/brand/rb-logo-${v}-960.webp 960w`} sizes={`${size}px`} />
+      <source type="image/webp" srcSet={`/rb-carnes/assets/brand/rb-logo-${v}-480.webp 480w, /rb-carnes/assets/brand/rb-logo-${v}-960.webp 960w`} sizes={`${size}px`} />
       <img
-        src={`/assets/brand/rb-logo-${v}-480.png`}
+        src={`/rb-carnes/assets/brand/rb-logo-${v}-480.png`}
         alt={alt}
         width={size}
         height={size}

@@ -17,7 +17,7 @@ export const categories: Category[] = [
 ];
 
 export interface ImageSet {
-  /** base sem sufixo, ex.: /assets/products/entrecote-studio */
+  /** base sem sufixo, ex.: /rb-carnes/assets/products/entrecote-studio */
   base: string;
   w: number;
   h: number;
@@ -46,7 +46,7 @@ const m = manifest as unknown as Record<string, ManifestEntry>;
 export const sceneManifest = (manifest as unknown as { __scenes: Record<string, { w: number; h: number }> }).__scenes;
 function img(slug: string, kind: 'studio' | 'macro'): ImageSet | undefined {
   const e = m[slug]?.[kind];
-  return e ? { base: `/assets/products/${slug}-${kind}`, w: e.w, h: e.h } : undefined;
+  return e ? { base: `/rb-carnes/assets/products/${slug}-${kind}`, w: e.w, h: e.h } : undefined;
 }
 function photo(slug: string) {
   return { studio: img(slug, 'studio'), macro: img(slug, 'macro'), illustrative: true };

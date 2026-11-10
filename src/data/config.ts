@@ -52,7 +52,7 @@ export const config: SiteConfig = {
   },
   or7PortfolioUrl: { value: null, needsConfirmation: true, note: 'URL do portfólio Or7 não confirmada.' },
   or7SignatureSrc: {
-    value: '/assets/brand/or7-assinatura-800.webp',
+    value: '/rb-carnes/assets/brand/or7-assinatura-800.webp',
     needsConfirmation: false,
     note: 'Arte original enviada pelo autor (fundo transparente), exibida sem alteração sobre placa preta.',
   },

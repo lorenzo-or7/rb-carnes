@@ -57,13 +57,13 @@ export function ScenePicture({ slug, alt, sizes, className, priority, position }
       </div>
     );
   }
-  const set = (ext: string) => [640, 1080, 1600].map((w) => `/assets/scenes/${slug}-${w}.${ext} ${Math.min(w, meta.w)}w`).join(', ');
+  const set = (ext: string) => [640, 1080, 1600].map((w) => `/rb-carnes/assets/scenes/${slug}-${w}.${ext} ${Math.min(w, meta.w)}w`).join(', ');
   return (
     <picture>
       <source type="image/avif" srcSet={set('avif')} sizes={sizes} />
       <source type="image/webp" srcSet={set('webp')} sizes={sizes} />
       <img
-        src={`/assets/scenes/${slug}-1080.jpg`}
+        src={`/rb-carnes/assets/scenes/${slug}-1080.jpg`}
         alt={alt}
         width={meta.w}
         height={meta.h}

@@ -12,8 +12,8 @@ import { useConcierge } from '../concierge/ConciergeContext';
  * As duas artes ocupam o mesmo quadro e trocam por crossfade sincronizado com o tema.
  */
 const ART = {
-  dark: { base: '/assets/hero/hero-dark', max: 1672, alt: 'RB Carnes: peça de carne marmorizada sobre tábua de madeira, com tecido vermelho e ilustração de boi ao fundo' },
-  light: { base: '/assets/hero/hero-light', max: 1671, alt: 'RB Carnes: peça de carne marmorizada sobre tábua de madeira, em fundo claro com ilustração de boi' },
+  dark: { base: '/rb-carnes/assets/hero/hero-dark', max: 1672, alt: 'RB Carnes: peça de carne marmorizada sobre tábua de madeira, com tecido vermelho e ilustração de boi ao fundo' },
+  light: { base: '/rb-carnes/assets/hero/hero-light', max: 1671, alt: 'RB Carnes: peça de carne marmorizada sobre tábua de madeira, em fundo claro com ilustração de boi' },
 } as const;
 
 function HeroArt({ variant, active }: { variant: 'dark' | 'light'; active: boolean }) {

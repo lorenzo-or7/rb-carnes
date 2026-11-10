@@ -61,9 +61,9 @@ function Slideshow() {
             aria-hidden={i !== index}
           >
             <picture>
-              <source type="image/avif" srcSet={`/assets/manifesto/${s.id}-560.avif 560w, /assets/manifesto/${s.id}-860.avif 860w, /assets/manifesto/${s.id}-1106.avif 1106w`} sizes="(max-width: 1023px) 88vw, 34vw" />
-              <source type="image/webp" srcSet={`/assets/manifesto/${s.id}-560.webp 560w, /assets/manifesto/${s.id}-860.webp 860w, /assets/manifesto/${s.id}-1106.webp 1106w`} sizes="(max-width: 1023px) 88vw, 34vw" />
-              <img src={`/assets/manifesto/${s.id}-860.jpg`} alt={s.alt} width={1106} height={1422} loading="lazy" decoding="async" />
+              <source type="image/avif" srcSet={`/rb-carnes/assets/manifesto/${s.id}-560.avif 560w, /rb-carnes/assets/manifesto/${s.id}-860.avif 860w, /rb-carnes/assets/manifesto/${s.id}-1106.avif 1106w`} sizes="(max-width: 1023px) 88vw, 34vw" />
+              <source type="image/webp" srcSet={`/rb-carnes/assets/manifesto/${s.id}-560.webp 560w, /rb-carnes/assets/manifesto/${s.id}-860.webp 860w, /rb-carnes/assets/manifesto/${s.id}-1106.webp 1106w`} sizes="(max-width: 1023px) 88vw, 34vw" />
+              <img src={`/rb-carnes/assets/manifesto/${s.id}-860.jpg`} alt={s.alt} width={1106} height={1422} loading="lazy" decoding="async" />
             </picture>
           </figure>
         ))}
